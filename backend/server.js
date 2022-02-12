@@ -7,7 +7,7 @@ const fs = require("fs");
 
 // MongoDB
 mongoose
-  .connect("mongodb+srv://FoodEz:FoodEz@cluster0.sbsk7.mongodb.net/FoodEz?retryWrites=true&w=majority", {
+  .connect("mongodb+srv://JobBlitz:JobBlitz@cluster0.2iofi.mongodb.net/JobBlitz?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
