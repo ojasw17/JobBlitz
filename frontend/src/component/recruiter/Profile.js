@@ -135,6 +135,8 @@ const Profile = (props) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              backgroundColor: "#B0C4DE",
+              border: "1px solid black",
               //   width: "60%",
             }}
           >

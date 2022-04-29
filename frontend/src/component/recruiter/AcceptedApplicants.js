@@ -138,7 +138,8 @@ const FilterPopup = (props) => {
                 xs={6}
                 justify="space-around"
                 alignItems="center"
-                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
+                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" , background : "#5a7c97" }}
+              
               >
                 <Grid item>
                   <Checkbox
@@ -450,8 +451,20 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
+    <Paper className={classes.jobTileOuter} elevation={3}
+    style={{
+      padding: 18,
+      //backgroundColor: "#B0C4DE",
+      border: "1px solid black",
+    }}
+    >
+      <Grid container
+        style={{
+          backgroundColor: "#477fa9",
+          border: "1px solid black",
+          padding : "5px" ,
+        }}
+      >
         <Grid
           item
           xs={2}
@@ -461,10 +474,13 @@ const ApplicationTile = (props) => {
             alignItems: "center",
           }}
         >
+
           <Avatar
-            src={`${server}${application.jobApplicant.profile}`}
+            src={application.jobApplicant.profile}
             className={classes.avatar}
           />
+
+          
         </Grid>
         <Grid container item xs={7} spacing={1} direction="column">
           <Grid item>
@@ -495,16 +511,7 @@ const ApplicationTile = (props) => {
           </Grid>
         </Grid>
         <Grid item container direction="column" xs={3}>
-          <Grid item>
-            <Button
-              variant="contained"
-              className={classes.statusBlock}
-              color="primary"
-              onClick={() => getResume()}
-            >
-              Download Resume
-            </Button>
-          </Grid>
+          
           <Grid item container xs>
             {/* {buttonSet[application.status]} */}
             <Button
@@ -615,6 +622,8 @@ const ApplicationTile = (props) => {
 };
 
 const AcceptedApplicants = (props) => {
+  console.log ( "indicate " ) ;
+  console.log ( props ) ;
   const setPopup = useContext(SetPopupContext);
   const [applications, setApplications] = useState([]);
   const [filterOpen, setFilterOpen] = useState(false);
@@ -636,6 +645,10 @@ const AcceptedApplicants = (props) => {
         status: false,
         desc: false,
       },
+      "jobApplicant.worked" : {
+        status: false,
+        desc: false,
+      }
     },
   });
 

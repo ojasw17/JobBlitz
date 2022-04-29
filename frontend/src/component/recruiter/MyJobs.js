@@ -155,11 +155,23 @@ const JobTile = (props) => {
   const postedOn = new Date(job.dateOfPosting);
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
+    <Paper className={classes.jobTileOuter} elevation={3}
+    style={{
+      padding: 18,
+      //backgroundColor: "#B0C4DE",
+      border: "1px solid black",
+    }}
+    >
+      <Grid container
+        style={{
+          backgroundColor: "#477fa9",
+          border: "1px solid black",
+          padding : "5px" ,
+        }}
+      >
         <Grid container item xs={9} spacing={1} direction="column">
           <Grid item>
-            <Typography variant="h5">{job.title}</Typography>
+            <Typography variant="h4">{job.title}</Typography>
           </Grid>
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />

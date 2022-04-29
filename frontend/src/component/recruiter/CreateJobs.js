@@ -105,6 +105,7 @@ const CreateJobs = (props) => {
           <Grid item>
             <Paper
               style={{
+                backgroundColor: "#B0C4DE",
                 padding: "20px",
                 outline: "none",
                 display: "flex",
@@ -121,7 +122,7 @@ const CreateJobs = (props) => {
               >
                 <Grid item>
                   <TextField
-                    label="Title"
+                    label="Company and Position"
                     value={jobDetails.title}
                     onChange={(event) =>
                       handleInput("title", event.target.value)
@@ -130,30 +131,7 @@ const CreateJobs = (props) => {
                     fullWidth
                   />
                 </Grid>
-                <Grid item>
-                  <ChipInput
-                    className={classes.inputBox}
-                    label="Skills"
-                    variant="outlined"
-                    helperText="Press enter to add skills"
-                    value={jobDetails.skillsets}
-                    onAdd={(chip) =>
-                      setJobDetails({
-                        ...jobDetails,
-                        skillsets: [...jobDetails.skillsets, chip],
-                      })
-                    }
-                    onDelete={(chip, index) => {
-                      let skillsets = jobDetails.skillsets;
-                      skillsets.splice(index, 1);
-                      setJobDetails({
-                        ...jobDetails,
-                        skillsets: skillsets,
-                      });
-                    }}
-                    fullWidth
-                  />
-                </Grid>
+             
                 <Grid item>
                   <TextField
                     select

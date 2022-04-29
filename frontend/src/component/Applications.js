@@ -52,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
 const ApplicationTile = (props) => {
   const classes = useStyles();
   const { application } = props;
+  console.log ( " sandy " ) ;
+  console.log ( application ) ;
   const setPopup = useContext(SetPopupContext);
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(application.job.rating);
@@ -130,11 +132,24 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
+    <Paper className={classes.jobTileOuter} elevation={3}
+    style={{
+      padding: 18,
+      //backgroundColor: "#B0C4DE",
+      border: "1px solid black",
+      width : "1400px" ,
+    }}
+    >
+      <Grid container
+        style={{
+          backgroundColor: "#477fa9",
+          border: "1px solid black",
+          padding : "5px" ,
+        }}
+      >
         <Grid container item xs={9} spacing={1} direction="column">
           <Grid item>
-            <Typography variant="h5">{application.job.title}</Typography>
+            <Typography variant="h3">{application.job.title}</Typography>
           </Grid>
           <Grid item>Posted By: {application.recruiter.name}</Grid>
           <Grid item>Role : {application.job.jobType}</Grid>

@@ -460,6 +460,8 @@ router.put("/user", jwtAuth, (req, res) => {
 // apply for a job [todo: test: done]
 router.post("/jobs/:id/applications", jwtAuth, (req, res) => {
   const user = req.user;
+  console.log ( "YAhi hai" ) ;
+  console.log ( user ) ;
   if (user.type != "applicant") {
     res.status(401).json({
       message: "You don't have permissions to apply for a job",
@@ -468,6 +470,10 @@ router.post("/jobs/:id/applications", jwtAuth, (req, res) => {
   }
   const data = req.body;
   const jobId = req.params.id;
+  console.log ( "mom" ) ;
+  console.log ( data.clg ) ;
+  console.log ( data.dmclg ) ;
+  console.log ( "papa" ) ;
 
   Application.findOne({
     userId: user._id,
@@ -520,6 +526,9 @@ router.post("/jobs/:id/applications", jwtAuth, (req, res) => {
                             jobId: job._id,
                             status: "applied",
                             sop: data.sop,
+                            worked : data.worked ,
+                            clg : data.clg ,
+                            dmclg : data.dmclg ,
                           });
                           application
                             .save()

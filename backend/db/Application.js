@@ -32,6 +32,18 @@ let schema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    worked: {
+      type: Number ,
+      default: 0 ,
+    },
+    clg : {
+      type : String ,
+      default : "OTHERS" ,
+    },
+    dmclg : {
+      type : Number ,
+      default : 0 ,
+    },
     dateOfJoining: {
       type: Date,
       validate: [

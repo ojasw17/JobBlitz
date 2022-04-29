@@ -10,6 +10,12 @@ let schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    worked : {
+      type : String,
+    },
+    clg : {
+      type : String,
+    },
     education: [
       {
         institutionName: {

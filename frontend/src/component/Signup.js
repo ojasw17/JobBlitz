@@ -127,6 +127,7 @@ const Login = (props) => {
     profile: "",
     bio: "",
     contactNumber: "",
+    worked : "" ,
   });
 
   const [phone, setPhone] = useState("");

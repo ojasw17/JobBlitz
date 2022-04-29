@@ -150,62 +150,14 @@ const FilterPopup = (props) => {
               Sort
             </Grid>
             <Grid item container direction="row" xs={9}>
-              <Grid
-                item
-                container
-                xs={4}
-                justify="space-around"
-                alignItems="center"
-                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
-              >
-                <Grid item>
-                  <Checkbox
-                    name="name"
-                    checked={searchOptions.sort["jobApplicant.name"].status}
-                    onChange={(event) =>
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          "jobApplicant.name": {
-                            ...searchOptions.sort["jobApplicant.name"],
-                            status: event.target.checked,
-                          },
-                        },
-                      })
-                    }
-                    id="name"
-                  />
-                </Grid>
-                <Grid item>
-                  <label for="name">
-                    <Typography>Name</Typography>
-                  </label>
-                </Grid>
-                <Grid item>
-                  <IconButton
-                    disabled={!searchOptions.sort["jobApplicant.name"].status}
-                    onClick={() => {
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          "jobApplicant.name": {
-                            ...searchOptions.sort["jobApplicant.name"],
-                            desc: !searchOptions.sort["jobApplicant.name"].desc,
-                          },
-                        },
-                      });
-                    }}
-                  >
-                    {searchOptions.sort["jobApplicant.name"].desc ? (
-                      <ArrowDownwardIcon />
-                    ) : (
-                      <ArrowUpwardIcon />
-                    )}
-                  </IconButton>
-                </Grid>
-              </Grid>
+
+
+              
+
+
+              
+
+
               <Grid
                 item
                 container
@@ -235,7 +187,7 @@ const FilterPopup = (props) => {
                 </Grid>
                 <Grid item>
                   <label for="dateOfApplication">
-                    <Typography>Date of Application</Typography>
+                    <Typography>Date of Apply</Typography>
                   </label>
                 </Grid>
                 <Grid item>
@@ -262,6 +214,13 @@ const FilterPopup = (props) => {
                   </IconButton>
                 </Grid>
               </Grid>
+
+
+
+
+
+
+
               <Grid
                 item
                 container
@@ -272,46 +231,45 @@ const FilterPopup = (props) => {
               >
                 <Grid item>
                   <Checkbox
-                    name="rating"
-                    checked={searchOptions.sort["jobApplicant.rating"].status}
+                    name="worked"
+                    checked={searchOptions.sort.worked.status}
                     onChange={(event) =>
                       setSearchOptions({
                         ...searchOptions,
                         sort: {
                           ...searchOptions.sort,
-                          "jobApplicant.rating": {
-                            ...searchOptions.sort[["jobApplicant.rating"]],
+                          worked: {
+                            ...searchOptions.sort.worked,
                             status: event.target.checked,
                           },
                         },
                       })
                     }
-                    id="rating"
+                    id="worked"
                   />
                 </Grid>
                 <Grid item>
-                  <label for="rating">
-                    <Typography>Rating</Typography>
+                  <label for="worked">
+                    <Typography>worked</Typography>
                   </label>
                 </Grid>
                 <Grid item>
                   <IconButton
-                    disabled={!searchOptions.sort["jobApplicant.rating"].status}
+                    disabled={!searchOptions.sort.worked.status}
                     onClick={() => {
                       setSearchOptions({
                         ...searchOptions,
                         sort: {
                           ...searchOptions.sort,
-                          "jobApplicant.rating": {
-                            ...searchOptions.sort["jobApplicant.rating"],
-                            desc: !searchOptions.sort["jobApplicant.rating"]
-                              .desc,
+                          worked: {
+                            ...searchOptions.sort.worked,
+                            desc: !searchOptions.sort.worked.desc,
                           },
                         },
                       });
                     }}
                   >
-                    {searchOptions.sort["jobApplicant.rating"].desc ? (
+                    {searchOptions.sort.worked.desc ? (
                       <ArrowDownwardIcon />
                     ) : (
                       <ArrowUpwardIcon />
@@ -319,6 +277,82 @@ const FilterPopup = (props) => {
                   </IconButton>
                 </Grid>
               </Grid>
+
+
+              <Grid
+                item
+                container
+                xs={4}
+                justify="space-around"
+                alignItems="center"
+                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
+              >
+                <Grid item>
+                  <Checkbox
+                    name="dmclg"
+                    checked={searchOptions.sort.dmclg.status}
+                    onChange={(event) =>
+                      setSearchOptions({
+                        ...searchOptions,
+                        sort: {
+                          ...searchOptions.sort,
+                          dmclg: {
+                            ...searchOptions.sort.dmclg,
+                            status: event.target.checked,
+                          },
+                        },
+                      })
+                    }
+                    id="dmclg"
+                  />
+                </Grid>
+                <Grid item>
+                  <label for="dmclg">
+                    <Typography>College</Typography>
+                  </label>
+                </Grid>
+                <Grid item>
+                  <IconButton
+                    disabled={!searchOptions.sort.dmclg.status}
+                    onClick={() => {
+                      setSearchOptions({
+                        ...searchOptions,
+                        sort: {
+                          ...searchOptions.sort,
+                          dmclg: {
+                            ...searchOptions.sort.dmclg,
+                            desc: !searchOptions.sort.dmclg.desc,
+                          },
+                        },
+                      });
+                    }}
+                  >
+                    {searchOptions.sort.dmclg.desc ? (
+                      <ArrowDownwardIcon />
+                    ) : (
+                      <ArrowUpwardIcon />
+                    )}
+                  </IconButton>
+                </Grid>
+              </Grid>
+
+
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+              
+
             </Grid>
           </Grid>
 
@@ -519,8 +553,20 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
+    <Paper className={classes.jobTileOuter} elevation={3}
+    style={{
+      padding: 18,
+      //backgroundColor: "#B0C4DE",
+      border: "1px solid black",
+    }}
+    >
+      <Grid container
+        style={{
+          backgroundColor: "#477fa9",
+          border: "1px solid black",
+          padding : "5px" ,
+        }}
+      >
         <Grid
           item
           xs={2}
@@ -528,6 +574,8 @@ const ApplicationTile = (props) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            //backgroundColor : "#B0C4DE" ,
+
           }}
         >
           <Avatar
@@ -614,6 +662,8 @@ const ApplicationTile = (props) => {
 };
 
 const JobApplications = (props) => {
+  console.log ( "Dinesh" ) ;
+  console.log ( props ) ;
   const setPopup = useContext(SetPopupContext);
   const [applications, setApplications] = useState([]);
   const { jobId } = useParams();
@@ -634,6 +684,14 @@ const JobApplications = (props) => {
         desc: true,
       },
       "jobApplicant.rating": {
+        status: false,
+        desc: false,
+      },
+      worked: {
+        status: false,
+        desc: false,
+      },
+      dmclg : {
         status: false,
         desc: false,
       },

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState, useEffect, useContext } from "react";
 import {
   Button,
@@ -8,12 +9,12 @@ import {
   makeStyles,
   Paper,
   TextField,
-  Typography,
   Modal,
   Slider,
   FormControlLabel,
   MenuItem,
   Checkbox,
+  Card, CardActions, CardContent, CardMedia, Typography
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
@@ -26,6 +27,7 @@ import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
 import { userType } from "../lib/isAuth";
+import useSstyles from './styles';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -55,7 +57,10 @@ const JobTile = (props) => {
   const setPopup = useContext(SetPopupContext);
 
   const [open, setOpen] = useState(false);
-  const [sop, setSop] = useState("");
+  const [sop, setSop] = useState('');
+  const [worked, setWorked] = React.useState( false );
+  const [clg, setClg] = React.useState( '' );
+  const [snd, setSnd] = React.useState( 1 );
 
   const handleClose = () => {
     setOpen(false);
@@ -63,13 +68,26 @@ const JobTile = (props) => {
   };
 
   const handleApply = () => {
-    console.log(job._id);
-    console.log(sop);
+    console.log ( clg.type ) ;
+    let dmclg = 4;
+    const hre = clg.toUpperCase() ;
+    if ( hre === "IIT" )  dmclg = 0 ;
+    else if ( hre == 'NIT' )  dmclg = 1 ;
+    else if ( hre == 'STATE' )  dmclg = 2 ;
+    else if ( hre == 'GFTI' )  dmclg = 3;
+    else dmclg =  4  ;
+    
+    console.log ( clg ) ;
+    console.log ( dmclg ) ;
+
     axios
       .post(
         `${apiList.jobs}/${job._id}/applications`,
         {
           sop: sop,
+          worked : snd , 
+          clg : clg , 
+          dmclg : dmclg ,
         },
         {
           headers: {
@@ -97,18 +115,37 @@ const JobTile = (props) => {
   };
 
   const deadline = new Date(job.deadline).toLocaleDateString();
-
+  
+  const handleChange = () => {
+    setWorked ( ! worked ) ;
+    console.log ( "worked" ) ;
+    console.log ( worked ) ;
+    if ( ! worked ) setSnd ( 0 ) ;
+    else setSnd ( 1 ) ;
+  };
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
+    <Paper className={classes.jobTileOuter} elevation={3}
+    style={{
+      padding: 18,
+      //backgroundColor: "#B0C4DE",
+      border: "1px solid black",
+    }}
+    >
+      <Card container className={classes.card}
+      style={{
+        backgroundColor: "#477fa9",
+        border: "1px solid black",
+        padding : "5px" ,
+      }}
+       >
         <Grid container item xs={9} spacing={1} direction="column">
           <Grid item>
-            <Typography variant="h5">{job.title}</Typography>
+            <Typography variant="h4">{job.title}</Typography>
           </Grid>
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
-          <Grid item>Role : {job.jobType}</Grid>
+          <Grid item >Role : {job.jobType}</Grid>
           <Grid item>Salary : &#8377; {job.salary} per month</Grid>
           <Grid item>
             Duration :{" "}
@@ -124,7 +161,20 @@ const JobTile = (props) => {
           </Grid>
         </Grid>
         <Grid item xs={3}>
-          <Button
+
+        <TextField disabled={userType() === "recruiter"} name="Clg" label="Clg ( IIT , NIT , STATE , GFTI , OTHERS )" variant="outlined" style = {{width: 400}} value={clg} onChange={(e) => setClg( e.target.value )} required />
+          
+        <label>
+            <input
+              type="checkbox"
+              checked={worked}
+              onChange={handleChange}
+              disabled={userType() === "recruiter"}
+
+            />
+            WORKED IN PAST
+          </label>
+        <Button
             variant="contained"
             color="primary"
             className={classes.button}
@@ -134,9 +184,11 @@ const JobTile = (props) => {
             disabled={userType() === "recruiter"}
           >
             Apply
-          </Button>
+        </Button>
+          
+
         </Grid>
-      </Grid>
+      </ Card>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
         <Paper
           style={{
@@ -533,7 +585,7 @@ const Home = (props) => {
       },
       rating: {
         status: false,
-        desc: false,
+        desc: true ,
       },
     },
   });
@@ -619,6 +671,8 @@ const Home = (props) => {
       });
   };
 
+  const classes = useSstyles();
+
   return (
     <>
       <Grid
@@ -680,11 +734,16 @@ const Home = (props) => {
           direction="column"
           alignItems="stretch"
           justify="center"
+          className={classes.mainContainer}
+          spacing={3}
         >
           {jobs.length > 0 ? (
-            jobs.map((job) => {
-              return <JobTile job={job} />;
-            })
+            jobs.map((job) => (
+              
+              <Grid item xs={12} sm={6} md={6}>
+               <JobTile job={job} />
+              </Grid>
+            ))
           ) : (
             <Typography variant="h5" style={{ textAlign: "center" }}>
               No jobs found
