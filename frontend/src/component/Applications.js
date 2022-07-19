@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px 0",
     boxSizing: "border-box",
     width: "100%",
+    background: "linear-gradient(to right,#01a9ac,#01dbdf)",
   },
   popupDialog: {
     height: "100%",
@@ -139,6 +140,7 @@ const ApplicationTile = (props) => {
           <Grid item>Posted By: {application.recruiter.name}</Grid>
           <Grid item>Role : {application.job.jobType}</Grid>
           <Grid item>Salary : &#8377; {application.job.salary} per month</Grid>
+          <Grid item>SOP : {application.sop}</Grid>
           <Grid item>
             Duration :{" "}
             {application.job.duration !== 0

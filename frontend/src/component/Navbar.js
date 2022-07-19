@@ -4,6 +4,7 @@ import {
   Typography,
   Button,
   makeStyles,
+  Avatar,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
@@ -19,12 +20,17 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  avatar: {
+    width: theme.spacing(3.5),
+    height: theme.spacing(3.5),
+  }
 }));
 
 const Navbar = (props) => {
   const classes = useStyles();
   let history = useHistory();
-
+  const a = localStorage.getItem('currentUserName');
+  
   const handleClick = (location) => {
     console.log(location);
     history.push(location);
@@ -39,8 +45,8 @@ const Navbar = (props) => {
         {isAuth() ? (
           userType() === "recruiter" ? (
             <>
-              <Button color="inherit" onClick={() => handleClick("/home")}>
-                Home
+              <Button color="inherit" onClick={() => handleClick("/myjobs")}>
+                My Jobs
               </Button>
               <Button color="inherit" onClick={() => handleClick("/addjob")}>
                 Add Jobs
@@ -51,8 +57,14 @@ const Navbar = (props) => {
               <Button color="inherit" onClick={() => handleClick("/employees")}>
                 Employees
               </Button>
+              <Button color="inherit" onClick={() => handleClick("/home")}>
+                All Jobs
+              </Button>
+              <Avatar
+                 className={classes.avatar}
+              />
               <Button color="inherit" onClick={() => handleClick("/profile")}>
-                Profile
+               Hi, {a}
               </Button>
               <Button color="inherit" onClick={() => handleClick("/logout")}>
                 Logout
@@ -69,8 +81,14 @@ const Navbar = (props) => {
               >
                 Applications
               </Button>
+              <Avatar
+                 className={classes.avatar}
+              />
+              <Button color="inherit" onClick={() => handleClick("/newprofile")}>
+                Hi, {a}
+              </Button>
               <Button color="inherit" onClick={() => handleClick("/profile")}>
-                Profile
+                Edit Profile
               </Button>
               <Button color="inherit" onClick={() => handleClick("/logout")}>
                 Logout

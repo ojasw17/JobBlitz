@@ -216,11 +216,8 @@ const Profile = (props) => {
         item
         direction="column"
         alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
+        style={{ padding: "30px", minHeight: "93vh"}}
       >
-        <Grid item>
-          <Typography variant="h2">Profile</Typography>
-        </Grid>
         <Grid item xs>
           <Paper
             style={{

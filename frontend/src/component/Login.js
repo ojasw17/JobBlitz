@@ -5,9 +5,11 @@ import {
   Typography,
   makeStyles,
   Paper,
+  TextField
 } from "@material-ui/core";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+
 
 import PasswordInput from "../lib/PasswordInput";
 import EmailInput from "../lib/EmailInput";
@@ -37,6 +39,7 @@ const Login = (props) => {
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
+    name: "",
   });
 
   const [inputErrorHandler, setInputErrorHandler] = useState({
@@ -72,18 +75,21 @@ const Login = (props) => {
       return inputErrorHandler[obj].error;
     });
     if (verified) {
+      const uName = loginDetails.name;
       axios
         .post(apiList.login, loginDetails)
         .then((response) => {
+          localStorage.clear();
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
+          localStorage.setItem("currentUserName", uName);
+          localStorage.setItem("userId", response.data.id);
           setLoggedin(isAuth());
           setPopup({
-            open: true,
-            severity: "success",
+            open: true,    
+            severity: "success",  
             message: "Logged in successfully",
           });
-          console.log(response);
         })
         .catch((err) => {
           setPopup({
@@ -111,6 +117,15 @@ const Login = (props) => {
           <Typography variant="h3" component="h2">
             Login
           </Typography>
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Name"
+            value={loginDetails.name}
+            variant="outlined"
+            onChange={(event) => handleInput("name", event.target.value)}
+            className={classes.inputBox}
+          />
         </Grid>
         <Grid item>
           <EmailInput

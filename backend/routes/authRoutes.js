@@ -73,15 +73,18 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return next(err);
       }
+      console.log(user);
       if (!user) {
         res.status(401).json(info);
         return;
       }
       // Token
+      console.log(req.body);
       const token = jwt.sign({ _id: user._id }, authKeys.jwtSecretKey);
       res.json({
         token: token,
         type: user.type,
+        id: user._id,
       });
     }
   )(req, res, next);

@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px 0",
     boxSizing: "border-box",
     width: "100%",
+    background: "linear-gradient(to right,#01a9ac,#01dbdf)",
   },
   popupDialog: {
     height: "100%",
@@ -502,7 +503,7 @@ const ApplicationTile = (props) => {
               color="primary"
               onClick={() => getResume()}
             >
-              Download Resume
+              Resume Link
             </Button>
           </Grid>
           <Grid item container xs>

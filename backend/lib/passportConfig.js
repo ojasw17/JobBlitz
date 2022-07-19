@@ -11,6 +11,7 @@ const authKeys = require("./authKeys");
 const filterJson = (obj, unwantedKeys) => {
   const filteredObj = {};
   Object.keys(obj).forEach((key) => {
+    console.log(obj);
     if (unwantedKeys.indexOf(key) === -1) {
       filteredObj[key] = obj[key];
     }
@@ -25,7 +26,7 @@ passport.use(
       passReqToCallback: true,
     },
     (req, email, password, done, res) => {
-      // console.log(email, password);
+       console.log(email, password);
       User.findOne({ email: email }, (err, user) => {
         if (err) {
           return done(err);
@@ -39,13 +40,6 @@ passport.use(
         user
           .login(password)
           .then(() => {
-            // let userSecure = {};
-            // const unwantedKeys = ["password", "__v"];
-            // Object.keys(user["_doc"]).forEach((key) => {
-            //   if (unwantedKeys.indexOf(key) === -1) {
-            //     userSecure[key] = user[key];
-            //   }
-            // });
             user["_doc"] = filterJson(user["_doc"], ["password", "__v"]);
             return done(null, user);
           })

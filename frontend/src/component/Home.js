@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px 0",
     boxSizing: "border-box",
     width: "100%",
+    background: "linear-gradient(to right,#01a9ac,#01dbdf)",
   },
   popupDialog: {
     height: "100%",
@@ -665,11 +666,6 @@ const Home = (props) => {
               style={{ width: "500px" }}
               variant="outlined"
             />
-          </Grid>
-          <Grid item>
-            <IconButton onClick={() => setFilterOpen(true)}>
-              <FilterListIcon />
-            </IconButton>
           </Grid>
         </Grid>
 

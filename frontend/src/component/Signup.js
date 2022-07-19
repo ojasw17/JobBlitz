@@ -215,11 +215,15 @@ const Login = (props) => {
     });
 
     if (verified) {
+      const uName = signupDetails.name;
+      console.log(signupDetails.name);
       axios
         .post(apiList.signup, updatedDetails)
         .then((response) => {
+          localStorage.clear();
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
+          localStorage.setItem("currentUserName", uName);
           setLoggedin(isAuth());
           setPopup({
             open: true,
@@ -285,11 +289,15 @@ const Login = (props) => {
     console.log(updatedDetails);
 
     if (verified) {
+      const uName = signupDetails.name;
+      console.log(signupDetails.name);
       axios
         .post(apiList.signup, updatedDetails)
         .then((response) => {
+          localStorage.clear();
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
+          localStorage.setItem("currentUserName", uName);
           setLoggedin(isAuth());
           setPopup({
             open: true,

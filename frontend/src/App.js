@@ -8,6 +8,7 @@ import Login from "./component/Login";
 import Logout from "./component/Logout";
 import Signup from "./component/Signup";
 import Home from "./component/Home";
+import NewProfile from "./component/NewProfile";
 import Applications from "./component/Applications";
 import Profile from "./component/Profile";
 import CreateJobs from "./component/recruiter/CreateJobs";
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "64px",
     boxSizing: "border-box",
     width: "100%",
-  },
+    background: "powderblue",
+    },
 }));
 
 export const SetPopupContext = createContext();
@@ -73,6 +75,9 @@ function App() {
                 ) : (
                   <Profile />
                 )}
+              </Route>
+              <Route exact path="/newprofile">
+                <NewProfile />
               </Route>
               <Route exact path="/addjob">
                 <CreateJobs />

@@ -7,7 +7,7 @@ const fs = require("fs");
 
 // MongoDB
 mongoose
-  .connect("mongodb+srv://FoodEz:FoodEz@cluster0.sbsk7.mongodb.net/FoodEz?retryWrites=true&w=majority", {
+  .connect("mongodb+srv://JobBlitz:JobBlitz@cluster0.2iofi.mongodb.net/JobBlitz?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -20,15 +20,13 @@ mongoose
 const app = express();
 const port = 8080;
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 
-// Setting up middlewares
 app.use(cors());
 app.use(express.json());
 app.use(passportConfig.initialize());
 
-// Routing
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/apiRoutes"));
 

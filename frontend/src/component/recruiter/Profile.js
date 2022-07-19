@@ -135,7 +135,6 @@ const Profile = (props) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              //   width: "60%",
             }}
           >
             <Grid container direction="column" alignItems="stretch" spacing={3}>
