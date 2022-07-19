@@ -27,6 +27,10 @@ app.use(cors());
 app.use(express.json());
 app.use(passportConfig.initialize());
 
+app.get('/', function(req, res, next) {
+  res.send("Hello world");
+});
+
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/apiRoutes"));
 
