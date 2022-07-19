@@ -30,10 +30,6 @@ app.use(passportConfig.initialize());
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/apiRoutes"));
 
-app.get('/', function(req, res, next) {
-  res.send("Hello world");
-});
-
 app.listen(process.env.PORT || port, () => {
   console.log(`Server started on port ${port}!`);
 });
