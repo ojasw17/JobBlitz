@@ -52,15 +52,18 @@ router.post("/signup", (req, res) => {
           user
             .delete()
             .then(() => {
+              console.log("lol");
               res.status(400).json(err);
             })
             .catch((err) => {
+              console.log("lol2"); 
               res.json({ error: err });
             });
           err;
         });
     })
     .catch((err) => {
+      console.log("lol3");
       res.status(400).json(err);
     });
 });
